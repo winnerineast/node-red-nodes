@@ -505,7 +505,7 @@ module.exports = function(RED) {
                         var missingUsernames = Object.keys(missingUsers).join(",");
                         return node.twitterConfig.getUsers(missingUsernames).then(function() {
                             var len = tweets.length;
-                            for (var i = 0;i < len; i++) {
+                            for (var i = 0; i < len; i++) {
                                 var tweet = messages[i];
                                 var output = tweets[i];
                                 output.sender = userObjectCache[tweet.message_create.sender_id];
@@ -566,7 +566,7 @@ module.exports = function(RED) {
             node.on("input", function(msg) {
                 if (msg.hasOwnProperty("payload")) {
                     node.status({fill:"blue",shape:"dot",text:"twitter.status.tweeting"});
-                    if (msg.payload.slice(0,2) == "D ") {
+                    if (msg.payload.slice(0,2).toLowerCase() === "d ") {
                         var dm_user;
                         // direct message syntax: "D user message"
                         var t = msg.payload.match(/D\s+(\S+)\s+(.*)/).slice(1);
